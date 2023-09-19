@@ -1,0 +1,140 @@
+.card {
+  width: inherit;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08);
+}
+
+.card__link {
+  text-decoration: none;
+  display: flex;
+}
+
+.card__image {
+  object-fit: cover;
+  background-position: center;
+  width: 100%;
+  height: 203px;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 0 14px 14px;
+}
+
+.card__name {
+  color: #000;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0 0 9px 0;
+}
+
+.card__duration {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: normal;
+  color: #A0A0A0;
+  margin: 0;
+}
+
+.card__button {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  background-color: #F9F9F9;
+  border: none;
+  border-radius: 30px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 9px;
+  padding: 6px 7px;
+  cursor: pointer;
+  visibility: hidden;
+}
+
+.card:hover .card__button {
+  visibility: visible;
+}
+
+.card__button_saved {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  background-image: url('../../images/save-icon.svg');
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.card__button_delete {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  width: 30px;
+  height: 30px;
+  background-image: url('../../images/delete-icon.svg');
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: block;
+  /* visibility: hidden; */
+}
+
+.card__button_visible {
+  visibility: visible;
+}
+
+.card__button_hidden {
+  display: none;
+}
+
+.card:hover .card__button_delete {
+  visibility: visible;
+}
+
+.cards__button-more {
+  border-radius: 6px;
+  background: #F9F9F9;
+  color: #000;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    max-width: 339px;
+  }
+
+  .card__image {
+    max-width: 339px;
+    max-height: 190px;
+  }
+
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    width: 300px;
+  }
+
+  .card__image {
+    max-width: 290px;
+    max-height: 168px;
+  }
+
+}

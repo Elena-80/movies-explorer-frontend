@@ -1,0 +1,144 @@
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.navigation a {
+  transition: 0.3s ease;
+}
+
+.navigation a:hover {
+  opacity: 0.7;
+}
+
+.navigation__movies {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.navigation__movies a {
+  color: #000000;
+}
+
+.navigation__movies_white a {
+  color: #FFFFFF;
+}
+
+.navigation__movies-link {
+  font-weight: 400;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.navigation__movies-link:last-of-type {
+  margin-right: 0;
+}
+
+.navigation__movies-link_active {
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 16px;
+}
+
+.navigation__auth {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.navigation__link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+  color: #FFFFFF;
+  margin-right: 30px;
+}
+
+.navigation__button {
+  padding: 8px 7.25px;
+  width: 26px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  background: #2BE080 url(./../../images/account.svg) center no-repeat;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.navigation__button_account {
+  background-color: #F9F9F9;
+}
+
+.navigation__button_account:hover {
+  opacity: 0.8;
+}
+
+.navigation__button:hover {
+  opacity: 0.8;
+}
+
+.navigation__account {
+  display: flex;
+  align-items: center;
+}
+
+.navigation__account-text {
+  color: #FFF;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 114.286% */
+  margin-right: 17px;
+}
+
+.navigation__account-text_black {
+  color: #000;
+}
+
+.burger__button {
+  background: none;
+  background-image: url('../../images/burger-menu.svg');
+  background-size: contain;
+  width: 44px;
+  height: 44px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease;
+  display: none;
+  padding: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .navigation__movies,
+  .navigation__button,
+  .navigation__account-text {
+    display: none;
+  }
+
+  .navigation {
+    justify-content: end;
+  }
+
+  .burger__button {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .navigation__link {
+    margin-right: 14px;
+  }
+
+  .burger__button {
+    display: block;
+    width: 40px;
+    height: 43px;
+  }
+
+}
