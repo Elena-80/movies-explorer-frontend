@@ -7,14 +7,14 @@ import Footer from "./Footer/Footer";
 
 const Main = () => {
   return (
-    <>
+    <main className='main'>
       <Promo />
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
       <Footer />
-    </>
+    </main>
   )
 };
 

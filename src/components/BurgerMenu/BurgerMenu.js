@@ -20,7 +20,7 @@ const BurgerMenu = ({ onClose }) => {
             </NavLink>
           </div>
             <Link to='/profile'>
-              <button className='burger__button_account'>Аккаунт</button>
+              <button className='burger__button-account'>Аккаунт</button>
             </Link>
         </div>
       </div>
@@ -29,9 +29,3 @@ const BurgerMenu = ({ onClose }) => {
 };
 
 export default BurgerMenu;
-
-{/* <NavLink
-  to="/messages"
-  className={({ isActive, isPending }) =>
-    isPending ? "pending" : isActive ? "active" : ""
-  } */}

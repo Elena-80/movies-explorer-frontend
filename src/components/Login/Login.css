@@ -23,7 +23,7 @@
   padding: 0;
   font-weight: 500;
   font-size: 24px;
-  line-height: 29px;
+  line-height: normal;
 }
 
 .login__form {
@@ -73,7 +73,7 @@
   width: 100%;
   text-align: center;
   padding: 13px 0 15px;
-  margin-top: 179px;
+  margin-top: 159px;
   margin-bottom: 16px;
   cursor: pointer;
   transition: 0.2s ease;
@@ -99,6 +99,10 @@
   margin-left: 6px;
   cursor: pointer;
   text-decoration: none;
+}
+
+.login__link:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 768px) {
@@ -130,5 +134,10 @@
   .login__button {
     margin-top: 267px;
     margin-bottom: 14px;
+    font-size: 12px;
+  }
+
+  .login__bottom {
+    font-size: 12px;
   }
 }

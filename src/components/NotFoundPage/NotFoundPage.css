@@ -18,6 +18,7 @@
   font-size: 140px;
   line-height: 169px;
   margin-bottom: 5px;
+  margin-top: 0;
   display: block;
 }
 
@@ -25,6 +26,7 @@
   font-size: 16px;
   line-height: 19px;
   text-align: center;
+  margin: 0;
 }
 
 .page__go-back-btn {

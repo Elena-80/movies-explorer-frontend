@@ -14,10 +14,6 @@
   margin-bottom: 15px;
 }
 
-.search__form:focus-within {
-  border-color: #2BE080; 
-}
-
 .search__input {
   border: none;
   outline: none;
@@ -27,6 +23,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.search__form:focus-within + .search__line {
+  border-bottom: 1px solid #2BE080;
 }
 
 .search__button {

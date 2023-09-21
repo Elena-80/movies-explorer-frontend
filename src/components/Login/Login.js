@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <div className='login__container'>
+    <section className='login__container'>
       <div className='login__header'>
         <Link to='/'>
           <img
@@ -39,6 +39,7 @@ const Login = () => {
           value={enteredValues.email || ''}
           onChange={handleChange}
           pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
+          placeholder='email@email.ru'
         />
         <span className='register__error'>{errors.email}</span>
         <label className='login__label' htmlFor='password'>Пароль</label>
@@ -58,7 +59,7 @@ const Login = () => {
         <span>Ещё не зарегистрированы?</span>
         <Link to='signup' className='login__link'>Регистрация</Link>
       </div>
-    </div>
+    </section>
   )
 };
 

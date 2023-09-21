@@ -20,7 +20,6 @@ const SearchForm = () => {
             >
             </button>
           </form>
-
           <div className='search__line' />
           <FilterCheckbox />
 

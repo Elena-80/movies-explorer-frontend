@@ -9,7 +9,7 @@ const MoviesCard = ({
   const location = useLocation().pathname;
   return (
     
-    <div className='card'>
+    <li className='card'>
       <div className='card__description'>
         <p className='card__name'>{movie.nameRU}</p>
         <p className='card__duration'>{convertMinToHours(movie.duration)}</p>
@@ -22,7 +22,7 @@ const MoviesCard = ({
           className='card__image'
         />
       </a>
-    </div>
+    </li>
   )
 };
 

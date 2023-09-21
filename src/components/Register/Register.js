@@ -36,6 +36,7 @@ const Register = () => {
           required
           value={enteredValues.name || ''}
           onChange={handleChange}
+          placeholder='Елена'
         />
         <span className='register__error'>{errors.name}</span>
         <label className='register__label'htmlFor='email'>E-mail</label>
@@ -48,6 +49,7 @@ const Register = () => {
           value={enteredValues.email || ''}
           onChange={handleChange}
           pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
+          placeholder='email@mail.ru'
         />
         <span className='register__error'>{errors.email}</span>
         <label className='register__label' htmlFor='password'>Пароль</label>
