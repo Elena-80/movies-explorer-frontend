@@ -5,16 +5,16 @@ import AboutMe from "./AboutMe/AboutMe";
 import Portfolio from "./Portfolio/Portfolio";
 import Footer from "./Footer/Footer";
 
-const Main = () => {
+const Main = ({ loggedIn }) => {
   return (
-    <main className='main'>
-      <Promo />
+    <section className='main'>
+      <Promo loggedIn={loggedIn}/>
       <AboutProject />
       <Techs />
       <AboutMe />
       <Portfolio />
       <Footer />
-    </main>
+    </section>
   )
 };
 

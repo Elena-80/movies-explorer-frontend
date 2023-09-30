@@ -3,11 +3,11 @@ import Header from '../Header/Header';
 import './Promo.css';
 import promo from '../../images/promo-logo.svg';
 
-const Promo = () => {
+const Promo = ({ loggedIn }) => {
   return (
-    <section className='promo'>
-      <Header />
-      <div className='promo__container'>
+    <div className='promo'>
+      <Header loggedIn={loggedIn}/>
+      <section className='promo__container'>
         <div className ='promo__info'>
           <h1 className='promo__title'>
             Учебный проект студента факультета Веб-разработки.
@@ -16,8 +16,8 @@ const Promo = () => {
           <a className = 'promo__button' href='#info'>Узнать больше</a>
         </div>
         <img className='promo__logo' src={promo} alt='Логотип Промо.' />
-      </div>
-    </section>
+      </section>
+    </div>
   )
 };
 

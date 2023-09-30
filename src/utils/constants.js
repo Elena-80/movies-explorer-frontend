@@ -1,80 +1,12 @@
-export const movieList = [
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-    {
-        country: "Россия",
-        director: "Дмитрий Дьяченко",
-        duration: 210,
-        year: "2023",
-        description: "Что, если Чебурашка на самом деле существует?",
-        image: "http://klubmama.ru/uploads/posts/2022-09/1662416861_15-klubmama-ru-p-den-rozhdeniya-cheburashki-podelka-foto-15.png",
-        trailerLink: "https://www.youtube.com/watch?v=ueExdWhHsJo",
-        thumbnail: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYjmFDp9B2utEbpPD32sp4eHLgsxUFx_zkQhshLxNtehs7SkJy0IvVri9a9_DR-JCsDxs&usqp=CAU",
-        movieId: 12345,
-        nameRU: "Чебурашка",
-        nameEN: "Cheburashka"
-    },
-  ];
+export const MOVIE_API_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+export const BASE_API_URL = 'https://api.elenamovies.nomoredomainsicu.ru';
+export const SHORT_MOVIE_DURATION = 40;
+export const MINUTES_IN_HOUR = 60;
+
+export const BIG_SCREEN_MOVIES_QTY = 12;
+export const MIDDLE_SCREEN_MOVIES_QTY = 8;
+export const SMALL_SCREEN_MOVIES_QTY = 5;
+export const MORE_MOVIES_BIG_SCREEN_QTY = 3;
+export const MORE_MOVIES_SMALL_SCREEN_QTY = 2;
+export const BIG_SCREEN = 917;
+export const SMALL_SCREEN = 480;

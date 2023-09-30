@@ -4,7 +4,7 @@ import useForm from '../../hooks/useForm';
 import './Login.css';
 import logo from '../../images/header-logo.svg';
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
@@ -12,6 +12,8 @@ const Login = () => {
     if (!enteredValues.email || !enteredValues.password) {
       return;
     }
+    console.log(enteredValues)
+    onLogin(enteredValues);
   };
 
   return (
@@ -38,7 +40,7 @@ const Login = () => {
           required
           value={enteredValues.email || ''}
           onChange={handleChange}
-          pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
+          // pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
           placeholder='email@email.ru'
         />
         <span className='register__error'>{errors.email}</span>
@@ -57,7 +59,7 @@ const Login = () => {
       </form>
       <div className='login__bottom'>
         <span>Ещё не зарегистрированы?</span>
-        <Link to='signup' className='login__link'>Регистрация</Link>
+        <Link to='/signup' className='login__link'>Регистрация</Link>
       </div>
     </section>
   )

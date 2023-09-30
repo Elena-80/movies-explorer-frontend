@@ -92,12 +92,24 @@
   /* visibility: hidden; */
 }
 
-.card__button_visible {
+/* .card__button_visible {
   visibility: visible;
 }
 
 .card__button_hidden {
   display: none;
+} */
+
+.card__button_inactive {
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  background-image: url('../../images/unsave-icon.svg');
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .card:hover .card__button_delete {

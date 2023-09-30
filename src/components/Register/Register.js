@@ -4,11 +4,12 @@ import useForm from '../../hooks/useForm';
 import './Register.css';
 import logo from '../../images/header-logo.svg';
 
-const Register = () => {
+const Register = ({ onRegister }) => {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    onRegister(enteredValues);
   };
 
   return (
@@ -36,7 +37,7 @@ const Register = () => {
           required
           value={enteredValues.name || ''}
           onChange={handleChange}
-          placeholder='Елена'
+          placeholder='Имя'
         />
         <span className='register__error'>{errors.name}</span>
         <label className='register__label'htmlFor='email'>E-mail</label>

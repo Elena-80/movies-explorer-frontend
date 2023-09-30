@@ -58,6 +58,7 @@
   text-decoration: none;
   color: #FFFFFF;
   margin-right: 30px;
+  font-style: normal;
 }
 
 .navigation__button {
@@ -81,6 +82,24 @@
 
 .navigation__button:hover {
   opacity: 0.8;
+}
+
+.navigation__button-auth {
+  width: 76px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 3px;
+  background: #2BE080;
+  border: none;
+  color: #000;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.navigation__button-auth:hover {
+  opacity: 0.6;
 }
 
 .navigation__account {
@@ -122,6 +141,7 @@
 
 @media screen and (max-width: 768px) {
   .navigation__movies,
+  .navigation__movies-link,
   .navigation__button,
   .navigation__text {
     display: none;
@@ -139,12 +159,19 @@
 @media screen and (max-width: 320px) {
   .navigation__link {
     margin-right: 14px;
+    font-size: 10px;
   }
 
   .navigation__burger-button {
     display: block;
     width: 40px;
     height: 43px;
+  }
+
+  .navigation__button-auth {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
   }
 
 }

@@ -1,26 +1,36 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 import useForm from '../../hooks/useForm';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-const Profile = () => {
+const Profile = ({ onUpdateUser, onSignOut, loggedIn }) => {
+  const currentUser = useContext(CurrentUserContext);
   const { enteredValues, handleChange, isFormValid, resetForm } = useForm();
   const navigate = useNavigate();
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    onUpdateUser({
+      name: enteredValues.name,
+      email: enteredValues.email,
+    });
   };
 
-  const logOut = () => {
+  useEffect(() => {
+    currentUser ? resetForm(currentUser) : resetForm();
+  }, [currentUser, resetForm]);
 
-  }
+  const isValueSameAsWas = (!isFormValid || (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email));
 
   return (
     <section className = 'profile'>
-      <Header />
+      <Header loggedIn={loggedIn} />
       <div className='profile__container'>
-        <h1 className='profile__title'>Привет, Елена!</h1>
+        <h1 className='profile__title'>Привет, {currentUser.name}!</h1>
         <form className='profile__form form' onSubmit={handleSubmit}>
           <div className='profile__value'>
             <label className='profile__label'>Имя</label>
@@ -31,7 +41,6 @@ const Profile = () => {
               value={enteredValues.name || ''}
               onChange={handleChange}
               className='profile__input'
-              placeholder='Елена'
               required
             />
           </div>
@@ -55,10 +64,11 @@ const Profile = () => {
             <button
               className='profile__edit'
               type='submit'
+              disabled={isValueSameAsWas}
             >
               Редактировать
             </button>
-              <button className='profile__logout' type='button' onClick = {logOut}>Выйти из аккаунта</button>         
+              <button className='profile__logout' type='button' onClick={() => onSignOut()}>Выйти из аккаунта</button>
           </div>
         </form>
       </div>
