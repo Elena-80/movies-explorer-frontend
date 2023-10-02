@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import './Profile.css';
 import Header from '../Header/Header';
 import useForm from '../../hooks/useForm';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 const Profile = ({ onUpdateUser, onSignOut, loggedIn }) => {
@@ -55,7 +55,6 @@ const Profile = ({ onUpdateUser, onSignOut, loggedIn }) => {
               value={enteredValues.email || ''}
               onChange={handleChange}
               className='profile__input'
-              pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
               placeholder='email@mail.ru'
               required
             />

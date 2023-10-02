@@ -15,6 +15,7 @@ class Auth {
   register({ name, email, password }) {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -34,6 +35,7 @@ class Auth {
   authorize({ email, password }) {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
+      credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -46,6 +48,20 @@ class Auth {
     });
   };
 
+  signout() {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+    })
+    .then(res => {
+      if (res.ok) return res.json();
+      return this._getErrorFromServer(res);
+    });
+  };
   
 }
 

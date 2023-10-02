@@ -32,8 +32,8 @@ const Navigation = ({ loggedIn }) => {
               Сохранённые фильмы
             </Link>      
           </div>
-          <div className = 'navigation__account'>       
-            <a className={ location === '/' ? 'navigation__text' : 'navigation__text navigation__text_black' } href = "/profile">Аккаунт</a>         
+          <div className = 'navigation__account'>
+            <button className ={ location === '/' ? 'navigation__text' : 'navigation__text navigation__text_black' } onClick = {profileButton}>Аккаунт</button>         
             <button className= { location === '/' ? 'navigation__button' : 'navigation__button navigation__button_account' } onClick = {profileButton} ></button>
           </div>
         </>

@@ -26,6 +26,12 @@ const SavedMovies = ({
   const location = useLocation();
 
   const handleSearchSubmit = (inputValue) => {
+    if (!inputValue) {
+      setPopupMessage('Нужно ввести ключевое слово');
+      setIsPopupOpen(true);
+      return;
+    }
+    
     if (inputValue.trim().length === 0) {
       setPopupMessage('Нужно ввести ключевое слово');
       setIsPopupOpen(true);

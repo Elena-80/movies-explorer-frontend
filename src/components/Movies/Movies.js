@@ -26,7 +26,6 @@ const Movies = ({
   const [initialMovies, setInitialMovies] = useState([]);
   const [filteredMovies, setFilteredMovies] = useState([]);
   const [notFound, setNotFound] = useState(false);
-  const [isAllMovies, setIsAllMovies] = useState([]);
   const location = useLocation();
 
   const handleSetFilteredMovies = (movies, userQuery, shortMoviesCheckbox) => {
@@ -46,6 +45,11 @@ const Movies = ({
   }
 
   const handleSearchSubmit = (inputValue) => {
+    if (!inputValue) {
+      setPopupMessage('Нужно ввести ключевое слово');
+      setIsPopupOpen(true);
+      return;
+    }
     if (inputValue.trim().length === 0) {
       setPopupMessage('Нужно ввести ключевое слово');
       setIsPopupOpen(true);
@@ -55,27 +59,7 @@ const Movies = ({
     localStorage.setItem('movieSearch', inputValue);
     localStorage.setItem('shortMovies', shortMovies);
 
-    if (isAllMovies.length === 0) {
-      onLoading(true);
-      moviesApi
-        .getMovies()
-        .then(movies => {
-          localStorage.setItem('allMovies', JSON.stringify(movies));
-          setIsAllMovies(movies);
-          handleSetFilteredMovies(
-            movies,
-            inputValue,
-            shortMovies
-          );
-        })
-        .catch((error) => {
-          setPopupMessage(error);
-          setIsPopupOpen(true);
-        })
-        .finally(() => onLoading(false));
-    } else {
-      handleSetFilteredMovies(isAllMovies, inputValue, shortMovies);
-    }
+    handleSetFilteredMovies(JSON.parse(localStorage.getItem('movies')) , inputValue, shortMovies );
   }
 
   const handleShortFilms = () => {
@@ -112,6 +96,21 @@ const Movies = ({
       } else {
         setFilteredMovies(movies);
       }
+    } else {
+      onLoading(true);
+      moviesApi
+        .getMovies()
+        .then(movies => {
+          localStorage.setItem('allMovies', JSON.stringify(movies));
+          localStorage.setItem('movies', JSON.stringify(movies));
+          setFilteredMovies(movies);
+          setInitialMovies(movies);
+        })
+        .catch((error) => {
+          setPopupMessage(error);
+          setIsPopupOpen(true);
+        })
+        .finally(() => onLoading(false));
     }
   }, [location]);
 

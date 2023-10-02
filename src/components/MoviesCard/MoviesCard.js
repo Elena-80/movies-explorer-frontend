@@ -13,6 +13,7 @@ const MoviesCard = ({
 
   const screenWidth = useScreenWidth();
   const [isMobile, setIsMobile] = useState(false);
+  
   const handleSaveCard = () => {
     onSave(movie);
   };

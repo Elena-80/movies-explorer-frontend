@@ -108,6 +108,8 @@
 }
 
 .navigation__text {
+  background: none;
+  border: none;
   text-decoration: none;
   display: inline;
   color: #FFF;
@@ -116,10 +118,16 @@
   font-weight: 500;
   line-height: 16px; /* 114.286% */
   margin-right: 17px;
+  padding: 0;
 }
 
 .navigation__text_black {
   color: #000;
+}
+
+.navigation__text:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .navigation__burger-button {

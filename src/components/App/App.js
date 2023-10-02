@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Route, Navigate, Routes, useNavigate, useLocation } from "react-router-dom";
 
 import './App.css';
@@ -16,13 +16,11 @@ import InfoTooltip from "../InfoTooltip/InfoTooltip";
 import auth from "../../utils/auth.js";
 
 import {
-  // register,
-  // authorize,
   getContent,
   updateUserInfo,
   saveMovie,
   deleteMovie,
-  getSavedMovies
+  getSavedMovies,
 } from "../../utils/MainApi";
 
 const App = () => {
@@ -40,6 +38,7 @@ const App = () => {
   useEffect(() => {
     handleTokenCheck();
   }, [isLoggedIn])
+
 
   /*--------------------- Authorization ---------------------- */
 
@@ -62,7 +61,6 @@ const App = () => {
       .then((data) => {
         setIsLoggedIn(true);
         localStorage.setItem('jwt', data.token);
-        console.log(data);
         navigate('/movies');
         Promise.all([getContent(data.token), getSavedMovies(data.token)])
           .then(([userInfo, userMovies]) => {
@@ -126,7 +124,7 @@ const App = () => {
       .then((card) => {
         const updatedSavedMovies = savedMovies.filter(item => card._id !== item._id);
         localStorage.setItem('savedMovies', updatedSavedMovies);
-        setSavedMovies(prev => updatedSavedMovies);
+        setSavedMovies(updatedSavedMovies);
       })
       .catch(error => {
         setPopupMessage(error);
@@ -137,14 +135,10 @@ const App = () => {
       });
   };
 
-  /*--------------- Popup function ------------ */
-
   const handleClosePopup = () => {
     setIsPopupOpen(false);
     setPopupMessage('');
   };
-
-  /* Update user's email and name */
 
   const handleUpdateUser = (newUserInfo) => {
     const jwt = localStorage.getItem('jwt');
@@ -163,8 +157,6 @@ const App = () => {
         setIsLoading(false);
       });
   };
-
-  // log out function
 
   const handleSignOut = () => {
     localStorage.clear();
