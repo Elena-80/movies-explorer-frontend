@@ -1,30 +1,27 @@
-import { useEffect, useCallback, useState } from 'react';
+import { useEffect, useLayoutEffect, useCallback, useState } from 'react';
 
 export default function useScreenWidth() {
-  const getScreenWidth = useCallback(() => window.innerWidth, []);
-  const [screenWidth, setScreenWidth] = useState(getScreenWidth());
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  useEffect(() => {
-
-    function handleScreenResize() {
-      setScreenWidth(getScreenWidth());
-    };
-
-    window.addEventListener('resize', resizeController, false); // при монтировании ставим обработчик
-
+  useLayoutEffect(() => {
     let resizeTimer;
+    function handleScreenResize() {
+      setScreenWidth(window.innerWidth);
+    };
 
     function resizeController() {
       if (!resizeTimer) {
         resizeTimer = setTimeout(() => {
           resizeTimer = null;
           handleScreenResize();
-        }, 1000); // 1 кадр в секунду
+        }, 1000);
       }
     };
 
-    return () => window.removeEventListener('resize', handleScreenResize);  // убираем при размонтировании
-  }, [getScreenWidth]);
+    window.addEventListener('resize', resizeController);
+    handleScreenResize();
+    return () => window.removeEventListener('resize', resizeController); 
+  }, []);
 
   return screenWidth;
 }

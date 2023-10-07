@@ -4,7 +4,7 @@ import useForm from '../../hooks/useForm';
 import './Login.css';
 import logo from '../../images/header-logo.svg';
 
-const Login = ({ onLogin }) => {
+const Login = ({ onLogin, onLoading }) => {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
@@ -12,7 +12,6 @@ const Login = ({ onLogin }) => {
     if (!enteredValues.email || !enteredValues.password) {
       return;
     }
-    console.log(enteredValues)
     onLogin(enteredValues);
   };
 
@@ -40,7 +39,7 @@ const Login = ({ onLogin }) => {
           required
           value={enteredValues.email || ''}
           onChange={handleChange}
-          // pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
+          pattern={'^\\w+([\\.]?\\w+)*@\\w+([\\.]?\\w+)*(\\.\\w{2,3})+$'}
           placeholder='email@email.ru'
         />
         <span className='register__error'>{errors.email}</span>
@@ -50,12 +49,13 @@ const Login = ({ onLogin }) => {
           type='password'
           id='password'
           name='password'
+          minLength={6}
           required
           value={enteredValues.password || ''}
           onChange={handleChange}
         />
         <span className='register__error'>{errors.password}</span>
-        <button className='login__button' type='submit' disabled={!isFormValid}>Войти</button>
+        <button className='login__button' type='submit' disabled={!isFormValid || onLoading}>Войти</button>
       </form>
       <div className='login__bottom'>
         <span>Ещё не зарегистрированы?</span>

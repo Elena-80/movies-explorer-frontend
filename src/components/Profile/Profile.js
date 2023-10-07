@@ -5,7 +5,7 @@ import useForm from '../../hooks/useForm';
 import { useNavigate } from 'react-router-dom';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-const Profile = ({ onUpdateUser, onSignOut, loggedIn }) => {
+const Profile = ({ onUpdateUser, onSignOut, loggedIn, onLoading }) => {
   const currentUser = useContext(CurrentUserContext);
   const { enteredValues, handleChange, isFormValid, resetForm } = useForm();
   const navigate = useNavigate();
@@ -63,7 +63,7 @@ const Profile = ({ onUpdateUser, onSignOut, loggedIn }) => {
             <button
               className='profile__edit'
               type='submit'
-              disabled={isValueSameAsWas}
+              disabled={isValueSameAsWas || onLoading}
             >
               Редактировать
             </button>

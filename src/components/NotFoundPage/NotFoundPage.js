@@ -10,7 +10,7 @@ const NotFoundPage = () => {
       <div className='page__info-block'>
         <h1 className='page__status'>404</h1>
         <p className='page__notfound'>Страница не найдена</p>
-        <button onClick={() => navigate(-1)} className='page__go-back-btn'>Назад</button>
+        <button onClick={()=>{navigate(-1)}} className='page__go-back-btn'>Назад</button>
       </div>
     </section>
   )

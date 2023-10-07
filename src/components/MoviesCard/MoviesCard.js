@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './MoviesCard.css';
 import { convertMinToHours } from '../../utils/utils';
-import useScreenWidth from '../../hooks/useScreenWidth';
+// import useScreenWidth from '../../hooks/useScreenWidth';
 
 const MoviesCard = ({
   isSavedMoviesPage,
@@ -11,7 +11,7 @@ const MoviesCard = ({
   saved
 }) => {
 
-  const screenWidth = useScreenWidth();
+  // const screenWidth = useScreenWidth();
   const [isMobile, setIsMobile] = useState(false);
   
   const handleSaveCard = () => {
@@ -22,13 +22,13 @@ const MoviesCard = ({
     onDelete(movie);
   };
 
-  useEffect(() => {
-    if (screenWidth < 786) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, [screenWidth]);
+  // useEffect(() => {
+  //   if (screenWidth < 786) {
+  //     setIsMobile(true);
+  //   } else {
+  //     setIsMobile(false);
+  //   }
+  // }, [screenWidth]);
   
   return (
     

@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+=======
+import React, { useCallback, useEffect, useState } from "react";
+import { Route, Navigate, Routes, useNavigate, useLocation } from "react-router-dom";
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
 
 import './App.css';
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -39,6 +44,7 @@ const App = () => {
     handleTokenCheck();
   }, [isLoggedIn])
 
+<<<<<<< HEAD
   const handleTokenCheck = () => {
     const path = location.pathname;
     const jwt = localStorage.getItem('jwt');
@@ -61,6 +67,12 @@ const App = () => {
 
   const handleRegistration =  ({ name, email, password }) => {
     setIsLoading(true);
+=======
+
+  /*--------------------- Authorization ---------------------- */
+
+  const handleRegistration = ({ name, email, password }) => {
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
     auth 
     .register({ name, email, password })
       .then(() => {
@@ -69,15 +81,22 @@ const App = () => {
       .catch(error => {
           setPopupMessage(error);
           setIsPopupOpen(true);
+<<<<<<< HEAD
       })
       .finally(() => {
         setIsLoading(false);
+=======
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
       });
   };
 
   
+<<<<<<< HEAD
   const handleAuthorization =  (data) => {
     setIsLoading(true);
+=======
+  const handleAuthorization = (data) => {
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
     auth
     .authorize(data)
       .then((data) => {
@@ -101,12 +120,19 @@ const App = () => {
         console.log(error);
         setPopupMessage(error);
         setIsPopupOpen(true);
+<<<<<<< HEAD
       })
       .finally(() => {
         setIsLoading(false);
       })
   };
 
+=======
+      });
+  };
+
+  /* --------------------- Movie cards' functions --------------------- */
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
 
   const handleSaveMovie = (movie) => {
     const jwt = localStorage.getItem('jwt');
@@ -191,15 +217,41 @@ const App = () => {
     navigate('/');
   };
 
+<<<<<<< HEAD
   return (
     <div className="App">
       <CurrentUserContext.Provider value={currentUser}>
+=======
+  const handleTokenCheck = () => {
+    const path = location.pathname;
+    const jwt = localStorage.getItem('jwt');
+    getContent(jwt)
+      .then((data) => {
+        setIsLoggedIn(true);
+        setCurrentUser(data)
+        navigate(path);
+      })
+      .catch((err) => console.log(err));
+
+    getSavedMovies(jwt)
+      .then((movies) => {
+        setSavedMovies(movies)
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
         <Routes>
           <Route exact path='/' 
             element = { <Main loggedIn={isLoggedIn} /> }
           />
 
           <Route exact path='/signup' 
+<<<<<<< HEAD
             element = {<Register onRegister={handleRegistration} onLoading={isLoading} />}
 
           />
@@ -207,6 +259,21 @@ const App = () => {
           <Route exact path='/signin' 
             element = {<Login onLogin={handleAuthorization} onLoading={isLoading}/>}
 
+=======
+            element = {!isLoggedIn ? (
+              <Register onRegister={handleRegistration} />
+            ) : (
+              <Navigate to='/' />
+            )}
+          />
+
+          <Route exact path='/signin' 
+            element = {!isLoggedIn ? (
+              <Login onLogin={handleAuthorization} />
+            ) : (
+              <Navigate to='/' />
+            )}
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
           />
 
           <Route path='/movies' element = {
@@ -241,7 +308,10 @@ const App = () => {
               loggedIn={isLoggedIn}
               onUpdateUser={handleUpdateUser}
               onSignOut={handleSignOut}
+<<<<<<< HEAD
               onLoading={isLoading}
+=======
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
             />}
           />
 
@@ -255,8 +325,14 @@ const App = () => {
           onClose={handleClosePopup}
           message={popupMessage}
         />
+<<<<<<< HEAD
       </CurrentUserContext.Provider>
     </div>
+=======
+        
+      </div>
+    </CurrentUserContext.Provider>
+>>>>>>> 569b29675599ff070735da82df6f3cd729c71faa
   );
 }
 

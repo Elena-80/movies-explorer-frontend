@@ -6,16 +6,13 @@ class Auth {
   
     _getErrorFromServer(res) {
       return res.json().then((res) => {
-      //   throw new Error(res.message);
-      return Promise.reject(`Ошибка: ${res.status}`);
-      });
-    
-    }
+        return Promise.reject(`Ошибка: ${res.status}`);
+        });    
+      };
   
   register({ name, email, password }) {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -28,14 +25,13 @@ class Auth {
     })
     .then(res => {
       if (res.ok) return res.json();
-      return this._getErrorFromServer(res);
+      return Promise.reject(`Ошибка: ${res.status}`);
     });
   };
   
   authorize({ email, password }) {
     return fetch(`${this._baseUrl}/signin`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -44,14 +40,13 @@ class Auth {
     })
     .then(res => {
       if (res.ok) return res.json();
-      return this._getErrorFromServer(res);
+      return Promise.reject(`Ошибка: ${res.status}`);
     });
   };
 
   signout() {
     return fetch(`${this._baseUrl}/signout`, {
       method: 'POST',
-      credentials: 'include',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -59,7 +54,7 @@ class Auth {
     })
     .then(res => {
       if (res.ok) return res.json();
-      return this._getErrorFromServer(res);
+      return Promise.reject(`Ошибка: ${res.status}`);
     });
   };
   

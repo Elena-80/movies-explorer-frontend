@@ -44,6 +44,7 @@ const SavedMovies = ({
       setNotFound(true);
       setPopupMessage('Ничего не найдено.');
       setIsPopupOpen(true);
+      setShowedMovies([]);
     } else {
       setNotFound(false);
       setFilteredMovies(moviesList);
@@ -52,6 +53,7 @@ const SavedMovies = ({
   }
 
   const handleShortFilms = () => {
+    // setshortSavedMovies(!shortSavedMovies)
     if (!shortMovies) {
       setShortMovies(true);
       localStorage.setItem('shortSavedMovies', true);
@@ -68,7 +70,7 @@ const SavedMovies = ({
   useEffect(() => {
     if (localStorage.getItem('shortSavedMovies') === 'true') {
       setShortMovies(true);
-      setShowedMovies(filterShortMovies(savedMovies));
+      setShowedMovies(filterShortMovies(filteredMovies));
     } else {
       setShortMovies(false);
       const moviesList = filterMovies(savedMovies, searchQuery, shortMovies);

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+import { Route, Navigate, Routes, useNavigate, useLocation } from "react-router-dom";
 
 import './App.css';
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -39,28 +39,10 @@ const App = () => {
     handleTokenCheck();
   }, [isLoggedIn])
 
-  const handleTokenCheck = () => {
-    const path = location.pathname;
-    const jwt = localStorage.getItem('jwt');
-    if (jwt) {
-      getContent(jwt)
-        .then((data) => {
-          setIsLoggedIn(true);
-          setCurrentUser(data);
-          navigate(path);
-        })
-        .catch((err) => console.log(err));
 
-      getSavedMovies(jwt)
-        .then((movies) => {
-          setSavedMovies(movies)
-        })
-        .catch((err) => console.log(err));
-      }
-  };
+  /*--------------------- Authorization ---------------------- */
 
-  const handleRegistration =  ({ name, email, password }) => {
-    setIsLoading(true);
+  const handleRegistration = ({ name, email, password }) => {
     auth 
     .register({ name, email, password })
       .then(() => {
@@ -69,15 +51,11 @@ const App = () => {
       .catch(error => {
           setPopupMessage(error);
           setIsPopupOpen(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
       });
   };
 
   
-  const handleAuthorization =  (data) => {
-    setIsLoading(true);
+  const handleAuthorization = (data) => {
     auth
     .authorize(data)
       .then((data) => {
@@ -101,12 +79,10 @@ const App = () => {
         console.log(error);
         setPopupMessage(error);
         setIsPopupOpen(true);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      })
+      });
   };
 
+  /* --------------------- Movie cards' functions --------------------- */
 
   const handleSaveMovie = (movie) => {
     const jwt = localStorage.getItem('jwt');
@@ -191,22 +167,47 @@ const App = () => {
     navigate('/');
   };
 
+  const handleTokenCheck = () => {
+    const path = location.pathname;
+    const jwt = localStorage.getItem('jwt');
+    getContent(jwt)
+      .then((data) => {
+        setIsLoggedIn(true);
+        setCurrentUser(data)
+        navigate(path);
+      })
+      .catch((err) => console.log(err));
+
+    getSavedMovies(jwt)
+      .then((movies) => {
+        setSavedMovies(movies)
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
-    <div className="App">
-      <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="App">
+
         <Routes>
           <Route exact path='/' 
             element = { <Main loggedIn={isLoggedIn} /> }
           />
 
           <Route exact path='/signup' 
-            element = {<Register onRegister={handleRegistration} onLoading={isLoading} />}
-
+            element = {!isLoggedIn ? (
+              <Register onRegister={handleRegistration} />
+            ) : (
+              <Navigate to='/' />
+            )}
           />
 
           <Route exact path='/signin' 
-            element = {<Login onLogin={handleAuthorization} onLoading={isLoading}/>}
-
+            element = {!isLoggedIn ? (
+              <Login onLogin={handleAuthorization} />
+            ) : (
+              <Navigate to='/' />
+            )}
           />
 
           <Route path='/movies' element = {
@@ -241,7 +242,6 @@ const App = () => {
               loggedIn={isLoggedIn}
               onUpdateUser={handleUpdateUser}
               onSignOut={handleSignOut}
-              onLoading={isLoading}
             />}
           />
 
@@ -255,8 +255,9 @@ const App = () => {
           onClose={handleClosePopup}
           message={popupMessage}
         />
-      </CurrentUserContext.Provider>
-    </div>
+        
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

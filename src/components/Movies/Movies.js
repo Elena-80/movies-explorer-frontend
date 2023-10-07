@@ -59,7 +59,7 @@ const Movies = ({
     localStorage.setItem('movieSearch', inputValue);
     localStorage.setItem('shortMovies', shortMovies);
 
-    handleSetFilteredMovies(JSON.parse(localStorage.getItem('movies')) , inputValue, shortMovies );
+    handleSetFilteredMovies(JSON.parse(localStorage.getItem('allMovies')) , inputValue, shortMovies );
   }
 
   const handleShortFilms = () => {

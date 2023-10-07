@@ -4,7 +4,7 @@ import useForm from '../../hooks/useForm';
 import './Register.css';
 import logo from '../../images/header-logo.svg';
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, onLoading }) => {
   const { enteredValues, errors, handleChange, isFormValid } = useForm();
 
   const handleSubmit = (event) => {
@@ -49,7 +49,7 @@ const Register = ({ onRegister }) => {
           required
           value={enteredValues.email || ''}
           onChange={handleChange}
-          pattern={'^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$'}
+          pattern={'^\\w+([\\.]?\\w+)*@\\w+([\\.]?\\w+)*(\\.\\w{2,3})+$'}
           placeholder='email@mail.ru'
         />
         <span className='register__error'>{errors.email}</span>
@@ -65,7 +65,7 @@ const Register = ({ onRegister }) => {
           onChange={handleChange}
         />
         <span className='register__error'>{errors.password}</span>
-        <button className='register__button' type='submit' disabled={!isFormValid}>Зарегистрироваться</button>
+        <button className='register__button' type='submit' disabled={!isFormValid || onLoading}>Зарегистрироваться</button>
       </form>
       <div className='register__bottom'>
         <span>Уже зарегистрированы?</span>
