@@ -5,8 +5,9 @@ class Auth {
     }
   
     _getErrorFromServer(res) {
-      return res.json().then((res) => {
-        return Promise.reject(`Ошибка: ${res.status}`);
+      return res.json()
+        .then((res) => {
+          return Promise.reject(`Ошибка: ${res.status}`);
         });    
       };
   
