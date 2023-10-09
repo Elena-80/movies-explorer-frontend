@@ -15,19 +15,31 @@ export function filterShortMovies(movies) {
 }
 
 export function filterMovies(movies, userQuery, shortMoviesCheckbox) {
+  // const moviesByUserQuery = movies.filter((movie) => {
+  //   const movieRu = String(movie.nameRU).toLowerCase().trim();
+  //   const movieEn = String(movie.nameEN).toLowerCase().trim();
+  //   const userMovie = userQuery.toLowerCase().trim();
+  //   return movieRu.indexOf(userMovie) !== -1 || movieEn.indexOf(userMovie) !== -1;
+  // });
+
+  if (shortMoviesCheckbox) {
+    return filterShortMovies(filterSavedMovies(movies, userQuery));
+  } else {
+    return filterSavedMovies(movies, userQuery);
+  }
+}
+
+export function filterSavedMovies(movies, userQuery) {
   const moviesByUserQuery = movies.filter((movie) => {
     const movieRu = String(movie.nameRU).toLowerCase().trim();
     const movieEn = String(movie.nameEN).toLowerCase().trim();
     const userMovie = userQuery.toLowerCase().trim();
     return movieRu.indexOf(userMovie) !== -1 || movieEn.indexOf(userMovie) !== -1;
   });
-
-  if (shortMoviesCheckbox) {
-    return filterShortMovies(moviesByUserQuery);
-  } else {
-    return moviesByUserQuery;
-  }
+  return moviesByUserQuery;
 }
+
+
 
 export const checkSavedCard = (moviesList, movie) => {
   return moviesList.find((item) => {

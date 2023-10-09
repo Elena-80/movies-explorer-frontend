@@ -55,6 +55,7 @@ const Profile = ({ onUpdateUser, onSignOut, loggedIn, onLoading }) => {
               value={enteredValues.email || ''}
               onChange={handleChange}
               className='profile__input'
+              pattern={'^\\w+([\\.]?\\w+)*@\\w+([\\.]?\\w+)*(\\.\\w{2,3})+$'}
               placeholder='email@mail.ru'
               required
             />

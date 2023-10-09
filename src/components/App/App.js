@@ -119,7 +119,7 @@ const App = () => {
       deleteMovie(id, jwt)
         .then((card) => {
           const updatedSavedMovies = savedMovies.filter(item => card._id !== item._id);
-          localStorage.setItem('savedMovies', updatedSavedMovies);
+          localStorage.setItem('savedMovies', JSON.stringify(updatedSavedMovies));
           setSavedMovies(updatedSavedMovies);
         })
         .catch(error => {
@@ -132,7 +132,10 @@ const App = () => {
     } else {
       saveMovie(movie, jwt)
         .then((newSavedMovie) => {
-          setSavedMovies((prev) => [...prev, newSavedMovie]);
+          // setSavedMovies((prev) => [...prev, newSavedMovie]);
+          const updatedSavedMovies = [...savedMovies, newSavedMovie];
+          localStorage.setItem('savedMovies', JSON.stringify(updatedSavedMovies));
+          setSavedMovies(updatedSavedMovies);
         })
         .catch((error) => {
           setPopupMessage(error);
@@ -147,7 +150,7 @@ const App = () => {
     deleteMovie(movie._id, jwt)
       .then((card) => {
         const updatedSavedMovies = savedMovies.filter(item => card._id !== item._id);
-        localStorage.setItem('savedMovies', updatedSavedMovies);
+        localStorage.setItem('savedMovies', JSON.stringify(updatedSavedMovies));
         setSavedMovies(updatedSavedMovies);
       })
       .catch(error => {

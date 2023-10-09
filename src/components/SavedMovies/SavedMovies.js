@@ -6,7 +6,7 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import './SavedMovies.css';
 
-import { filterMovies, filterShortMovies } from '../../utils/utils';
+import { filterMovies, filterSavedMovies, filterShortMovies } from '../../utils/utils';
 import { useLocation } from 'react-router-dom';
 
 const SavedMovies = ({
@@ -21,7 +21,7 @@ const SavedMovies = ({
   const [shortMovies, setShortMovies] = useState(false);
   const [notFound, setNotFound] = useState(false);
   const [showedMovies, setShowedMovies] = useState(savedMovies);
-  const [filteredMovies, setFilteredMovies] = useState(showedMovies);
+  const [filteredMovies, setFilteredMovies] = useState(savedMovies);
   const [searchQuery, setSearchQuery] = useState('');
   const location = useLocation();
 
@@ -38,8 +38,10 @@ const SavedMovies = ({
       return;
     }
 
-    const moviesList = filterMovies(savedMovies, inputValue, shortMovies);
     setSearchQuery(inputValue);
+    const moviesList = filterMovies(savedMovies, inputValue, shortMovies);
+    setFilteredMovies(filterSavedMovies(savedMovies, inputValue));
+
     if (moviesList.length === 0) {
       setNotFound(true);
       setPopupMessage('Ничего не найдено.');
@@ -47,41 +49,29 @@ const SavedMovies = ({
       setShowedMovies([]);
     } else {
       setNotFound(false);
-      setFilteredMovies(moviesList);
       setShowedMovies(moviesList);
     }
   }
 
   const handleShortFilms = () => {
-    // setshortSavedMovies(!shortSavedMovies)
     if (!shortMovies) {
       setShortMovies(true);
-      localStorage.setItem('shortSavedMovies', true);
       setShowedMovies(filterShortMovies(filteredMovies));
       filterShortMovies(filteredMovies).length === 0 ? setNotFound(true) : setNotFound(false);
     } else {
-      setShortMovies(false);
-      localStorage.setItem('shortSavedMovies', false);
-      filteredMovies.length === 0 ? setNotFound(true) : setNotFound(false);
-      setShowedMovies(filteredMovies);
+        setShortMovies(false);
+        filteredMovies.length === 0 ? setNotFound(true) : setNotFound(false);
+        setShowedMovies(filteredMovies);
     }
   }
 
   useEffect(() => {
-    if (localStorage.getItem('shortSavedMovies') === 'true') {
-      setShortMovies(true);
-      setShowedMovies(filterShortMovies(filteredMovies));
-    } else {
-      setShortMovies(false);
+      savedMovies.length !== 0 ? setNotFound(false) : setNotFound(true);
       const moviesList = filterMovies(savedMovies, searchQuery, shortMovies);
+      setFilteredMovies(filterSavedMovies(savedMovies, searchQuery));
       setShowedMovies(moviesList);
-    }
-  }, [savedMovies, location, shortMovies]);
+    }, [savedMovies, location]);
 
-  useEffect(() => {
-    setFilteredMovies(savedMovies);
-    savedMovies.length !== 0 ? setNotFound(false) : setNotFound(true);
-  }, [savedMovies]);
 
     return (
     <section className='savedmovies__page'>
